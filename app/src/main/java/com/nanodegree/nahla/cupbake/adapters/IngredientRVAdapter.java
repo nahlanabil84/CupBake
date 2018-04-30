@@ -60,10 +60,13 @@ public class IngredientRVAdapter extends RecyclerView.Adapter<IngredientRVAdapte
 
         public void emptyVH() {
             quantityTV.setText("");
+            quantityTV.setTextSize(18);
             quantityTV.setVisibility(View.VISIBLE);
             measureTV.setText("");
+            measureTV.setTextSize(18);
             measureTV.setVisibility(View.VISIBLE);
             ingredientTV.setText("");
+            ingredientTV.setTextSize(18);
             ingredientTV.setVisibility(View.VISIBLE);
         }
     }

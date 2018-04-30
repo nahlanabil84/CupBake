@@ -2,7 +2,6 @@ package com.nanodegree.nahla.cupbake.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,14 +13,13 @@ import com.nanodegree.nahla.cupbake.R;
 import com.nanodegree.nahla.cupbake.adapters.IngredientRVAdapter;
 import com.nanodegree.nahla.cupbake.adapters.StepRVAdapter;
 import com.nanodegree.nahla.cupbake.models.recipeListing.ResponseRecipeListing;
-import com.nanodegree.nahla.cupbake.widget.IngredientsAppWidget;
-import com.nanodegree.nahla.cupbake.widget.IngredientsRemoteViewsService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 import static com.nanodegree.nahla.cupbake.activities.DetailsActivity.RECIPE_DETAILS;
+import static com.nanodegree.nahla.cupbake.widget.IngredientsRemoteViewsService.updateWidget;
 
 
 public class DescriptionFragment extends Fragment {
@@ -52,7 +50,7 @@ public class DescriptionFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             recipeListing = getArguments().getParcelable(RECIPE_DETAILS);
-            IngredientsRemoteViewsService.updateWidget(getActivity().getApplicationContext(), recipeListing);
+            updateWidget(getActivity().getApplicationContext(), recipeListing);
         }
     }
 

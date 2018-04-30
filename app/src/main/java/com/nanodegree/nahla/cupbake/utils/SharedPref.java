@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.nanodegree.nahla.cupbake.R;
 import com.nanodegree.nahla.cupbake.models.recipeListing.ResponseRecipeListing;
 
 import static com.nanodegree.nahla.cupbake.utils.Const.RECIPE_DESCRIPTION;
@@ -19,7 +18,6 @@ public class SharedPref {
         String json = gson.toJson(recipe);
 
         prefs.putString(RECIPE_DESCRIPTION, json);
-
         prefs.apply();
     }
 

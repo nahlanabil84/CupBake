@@ -1,6 +1,5 @@
 package com.nanodegree.nahla.cupbake.adapters;
 
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.nanodegree.nahla.cupbake.R;
 import com.nanodegree.nahla.cupbake.activities.StepActivity;
-import com.nanodegree.nahla.cupbake.fragments.DescriptionFragment;
 import com.nanodegree.nahla.cupbake.fragments.StepsFragment;
 import com.nanodegree.nahla.cupbake.models.recipeListing.Step;
 
@@ -19,9 +17,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.nanodegree.nahla.cupbake.utils.Const.RECIPE_DESCRIPTION;
-import static com.nanodegree.nahla.cupbake.utils.Const.RECIPE_STEP;
 
 public class StepRVAdapter extends RecyclerView.Adapter<StepRVAdapter.RecipeViewHolder> {
 
@@ -77,17 +72,6 @@ public class StepRVAdapter extends RecyclerView.Adapter<StepRVAdapter.RecipeView
                         .replace(R.id.stepFL, StepsFragment.newInstance(steps.get(getAdapterPosition())))
                         .addToBackStack(null)
                         .commit();
-
-//            } else if (itemView.getContext().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-//                itemView.getContext().startActivity(StepActivity.newInstance(itemView.getContext(), steps.get(getAdapterPosition()), recipeName));
-//
-//            } else {
-//                ((AppCompatActivity) itemView.getContext())
-//                        .getSupportFragmentManager()
-//                        .beginTransaction()
-//                        .replace(R.id.detailsContainerFL, StepsFragment.newInstance(steps.get(getAdapterPosition())))
-//                        .addToBackStack(null)
-//                        .commit();
             } else {
                 itemView.getContext().startActivity(StepActivity.newInstance(itemView.getContext(), steps.get(getAdapterPosition()), recipeName));
             }

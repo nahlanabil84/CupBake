@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +18,14 @@ import com.nanodegree.nahla.cupbake.listeners.OnGetDataListener;
 import com.nanodegree.nahla.cupbake.models.recipeListing.ResponseRecipeListing;
 import com.nanodegree.nahla.cupbake.retrofit.RetrofitManager;
 import com.nanodegree.nahla.cupbake.utils.SharedPref;
-import com.nanodegree.nahla.cupbake.widget.IngredientsRemoteViewsService;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static com.nanodegree.nahla.cupbake.widget.IngredientsRemoteViewsService.updateWidget;
 
 public class RecipeListingFragment extends Fragment implements OnGetDataListener<ArrayList<ResponseRecipeListing>, String> {
 
@@ -92,7 +92,7 @@ public class RecipeListingFragment extends Fragment implements OnGetDataListener
         adapter.notifyDataSetChanged();
 
         if (getActivity().getApplicationContext() != null && SharedPref.loadRecipe(getActivity().getApplicationContext()) == null) {
-            IngredientsRemoteViewsService.updateWidget(getActivity(), recipeListing.get(0));
+            updateWidget(getActivity(), recipeListing.get(0));
         }
 
     }

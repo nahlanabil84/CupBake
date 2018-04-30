@@ -20,10 +20,10 @@
 
     <ListView
         android:id="@+id/appwidget_LV"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/appwidget_text"
         android:layout_margin="8dp"
-        tools:listitem="@layout/item_ingredient" />
+        tools:listitem="@layout/item_widget_ingredient" />
 
 </RelativeLayout>

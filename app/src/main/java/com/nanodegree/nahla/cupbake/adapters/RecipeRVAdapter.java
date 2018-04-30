@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nanodegree.nahla.cupbake.R;
@@ -18,6 +17,8 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.nanodegree.nahla.cupbake.widget.IngredientsRemoteViewsService.updateWidget;
 
 public class RecipeRVAdapter extends RecyclerView.Adapter<RecipeRVAdapter.RecipeViewHolder> {
 
@@ -73,6 +74,7 @@ public class RecipeRVAdapter extends RecyclerView.Adapter<RecipeRVAdapter.Recipe
 
         @OnClick(R.id.recipeCV)
         public void onViewClicked() {
+            updateWidget(itemView.getContext().getApplicationContext(), recipes.get(getAdapterPosition()));
             itemView.getContext().startActivity(DetailsActivity.newInstance(itemView.getContext(), recipes.get(getAdapterPosition())));
         }
 

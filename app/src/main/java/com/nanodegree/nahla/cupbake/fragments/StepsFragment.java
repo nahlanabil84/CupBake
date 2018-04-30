@@ -1,6 +1,5 @@
 package com.nanodegree.nahla.cupbake.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
@@ -124,8 +123,8 @@ public class StepsFragment extends Fragment {
                     new DefaultTrackSelector(), new DefaultLoadControl());
 
             exoPlayer.setPlayer(player);
-            player.setPlayWhenReady(playWhenReady);
             player.seekTo(currentWindow, playbackPosition);
+            player.setPlayWhenReady(playWhenReady);
         }
 
         MediaSource mediaSource = buildMediaSource(Uri.parse(step.getVideoURL()));
@@ -149,7 +148,7 @@ public class StepsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if (step.getVideoURL() != null || !step.getVideoURL().isEmpty())
+        if (Util.SDK_INT > 23)
             initPlayer();
     }
 
