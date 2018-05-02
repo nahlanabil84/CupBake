@@ -122,13 +122,14 @@ public class StepsFragment extends Fragment {
                     new DefaultRenderersFactory(getContext()),
                     new DefaultTrackSelector(), new DefaultLoadControl());
 
+            MediaSource mediaSource = buildMediaSource(Uri.parse(step.getVideoURL()));
+            player.prepare(mediaSource, false, false);
+
             exoPlayer.setPlayer(player);
             player.seekTo(currentWindow, playbackPosition);
             player.setPlayWhenReady(playWhenReady);
         }
 
-        MediaSource mediaSource = buildMediaSource(Uri.parse(step.getVideoURL()));
-        player.prepare(mediaSource, true, false);
     }
 
     @Override

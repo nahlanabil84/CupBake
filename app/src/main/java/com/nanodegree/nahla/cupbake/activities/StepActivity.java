@@ -3,6 +3,7 @@ package com.nanodegree.nahla.cupbake.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,7 +18,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static com.nanodegree.nahla.cupbake.fragments.StepsFragment.RECIPE_STEP_KEY;
-import static com.nanodegree.nahla.cupbake.utils.Const.RECIPE_STEP;
 
 public class StepActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +28,7 @@ public class StepActivity extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     private Step step;
     private String recipeName;
+    private FragmentManager mFragmentManager;
 
     public static Intent newInstance(Context context, Step step, String recipeName) {
         Intent intent = new Intent(context, StepActivity.class);
@@ -50,7 +51,7 @@ public class StepActivity extends AppCompatActivity implements View.OnClickListe
 
         if (step != null && recipeName != null) {
             setUpToolbar();
-            setUpFragment();
+            setUpFragment(savedInstanceState);
         }
 
     }
@@ -64,12 +65,22 @@ public class StepActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().setTitle(null);
     }
 
-    private void setUpFragment() {
-        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction()
-                .replace(R.id.stepContainerFL, StepsFragment.newInstance(step), RECIPE_STEP);
+    private void setUpFragment(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            // only create fragment if activity is started for the first time
+            mFragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
 
-        ft.commit();
+            StepsFragment fragment = StepsFragment.newInstance(step);
+
+            fragmentTransaction.add(R.id.stepContainerFL, fragment);
+            fragmentTransaction.commit();
+        } else {
+            // do nothing - fragment is recreated automatically
+        }
+
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.stepContainerFL, StepsFragment.newInstance(step), RECIPE_STEP).commit();
     }
 
     @Override
